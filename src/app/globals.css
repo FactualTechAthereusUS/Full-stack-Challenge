@@ -1,26 +1,441 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.dark body {
+  background-color: var(--tradeberg-bg);
+  color: var(--background);
+}
+
+/* Flat background; gradients removed for uniform product surface */
+body {
+  background-color: var(--tradeberg-bg);
+}
+
+.auth-btns {
+  @apply border border-gray-300 p-3 px-5 w-full rounded-4xl flex gap-4 cursor-pointer outline-0 hover:bg-gray-50;
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* TradeBerg Theme Variables - Light Mode (Default) */
+  --tradeberg-bg: #ffffff;
+  --tradeberg-text-primary: #111111;
+  --tradeberg-text-secondary: #555555;
+  --tradeberg-card-bg: #f9f9f9;
+  --tradeberg-card-border: #eaeaea;
+  --tradeberg-accent-color: #007bff;
+  --tradeberg-accent-hover: #0056b3;
+  --tradeberg-glass-bg: rgba(255, 255, 255, 0.25);
+  --tradeberg-glass-border: rgba(255, 255, 255, 0.18);
+  --tradeberg-shadow: rgba(31, 38, 135, 0.37);
+
+  /* System Variables (using TradeBerg variables) */
+  --background: var(--tradeberg-bg);
+  --foreground: var(--tradeberg-text-primary);
+  --card: var(--tradeberg-card-bg);
+  --card-foreground: var(--tradeberg-text-primary);
+  --popover: var(--tradeberg-bg);
+  --popover-foreground: var(--tradeberg-text-primary);
+  --primary: var(--tradeberg-accent-color);
+  --primary-foreground: #ffffff;
+  --secondary: var(--tradeberg-card-bg);
+  --secondary-foreground: var(--tradeberg-text-primary);
+  --muted: var(--tradeberg-card-bg);
+  --muted-foreground: var(--tradeberg-text-secondary);
+  --accent: var(--tradeberg-accent-color);
+  --accent-foreground: #ffffff;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: var(--tradeberg-card-border);
+  --input: var(--tradeberg-card-bg);
+  --ring: var(--tradeberg-accent-color);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: var(--tradeberg-bg);
+  --sidebar-foreground: var(--tradeberg-text-primary);
+  --sidebar-primary: var(--tradeberg-accent-color);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--tradeberg-card-bg);
+  --sidebar-accent-foreground: var(--tradeberg-text-primary);
+  --sidebar-border: var(--tradeberg-card-border);
+  --sidebar-ring: var(--tradeberg-accent-color);
+}
+
+/* Dark Theme - TradeBerg Variables (flat #0f0f0f surfaces) */
+.dark,
+body.dark-theme {
+  /* Base surface + text */
+  --tradeberg-bg: #0f0f0f;
+  --tradeberg-text-primary: #e5e7eb;
+  --tradeberg-text-secondary: #9ca3af;
+  /* Match global background by default; individual components can override */
+  --tradeberg-card-bg: #0f0f0f;
+  --tradeberg-card-border: #1f2937;
+
+  /* Accent (ChatGPT-style green) */
+  --tradeberg-accent-color: #10a37f;
+  --tradeberg-accent-hover: #059669;
+
+  /* Glass / shadow */
+  --tradeberg-glass-bg: rgba(17, 24, 39, 0.85);
+  --tradeberg-glass-border: rgba(31, 41, 55, 0.9);
+  --tradeberg-shadow: rgba(0, 0, 0, 0.6);
+
+  /* System Variables (using TradeBerg dark variables) */
+  --background: var(--tradeberg-bg);
+  --foreground: var(--tradeberg-text-primary);
+  --card: var(--tradeberg-card-bg);
+  --card-foreground: var(--tradeberg-text-primary);
+  --popover: var(--tradeberg-card-bg);
+  --popover-foreground: var(--tradeberg-text-primary);
+  --primary: var(--tradeberg-accent-color);
+  --primary-foreground: #ffffff;
+  --secondary: var(--tradeberg-card-bg);
+  --secondary-foreground: var(--tradeberg-text-primary);
+  --muted: var(--tradeberg-card-bg);
+  --muted-foreground: var(--tradeberg-text-secondary);
+  --accent: var(--tradeberg-accent-color);
+  --accent-foreground: #ffffff;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: var(--tradeberg-card-border);
+  --input: var(--tradeberg-card-bg);
+  --ring: var(--tradeberg-accent-color);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: var(--tradeberg-bg);
+  --sidebar-foreground: var(--tradeberg-text-primary);
+  --sidebar-primary: var(--tradeberg-accent-color);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--tradeberg-card-bg);
+  --sidebar-accent-foreground: var(--tradeberg-text-primary);
+  --sidebar-border: var(--tradeberg-card-border);
+  --sidebar-ring: var(--tradeberg-accent-color);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html,
+  body {
+    @apply bg-background text-foreground;
+    height: 100%;
+    overflow: hidden;
+    /* Prevent body scroll */
+  }
+
+  /* Global scale: make everything a bit smaller on desktop */
+  html {
+    /* Reduce root font-size so all rem-based Tailwind sizing shrinks uniformly */
+    font-size: 14px;
+  }
+
+  /* Keep mobile readability at default size */
+  @media (max-width: 640px) {
+    html {
+      font-size: 16px;
+    }
+  }
+
+  body {
+    background-color: var(--tradeberg-bg);
+    background-image: none;
+  }
+
+  /* Dark mode: keep the same flat background */
+  body.dark-theme,
+  .dark body,
+  html.dark,
+  html.dark-theme {
+    background-color: var(--tradeberg-bg);
+    background-image: none;
+  }
+
+  /* Ensure all elements inherit theme */
+  * {
+    color: inherit;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+
+  /* Contextual UI Animation - Dashboard Widgets */
+  .dashboard-widgets-container {
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .dashboard-widgets-container.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    /* Clicks go through it */
+  }
+
+  /* Chat Message Animations */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .chat-message {
+    animation: fade-in-up 0.4s ease-out;
+  }
+
+  /* Hide scrollbars by default, show on hover */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+  }
+
+  .show-scrollbar-on-hover {
+    /* Firefox - hide by default */
+    scrollbar-width: none;
+  }
+
+  /* Chrome, Safari, Opera - hide by default */
+  .show-scrollbar-on-hover::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .show-scrollbar-on-hover::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .show-scrollbar-on-hover::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+  }
+
+  /* Show scrollbar on hover */
+  .show-scrollbar-on-hover:hover {
+    scrollbar-width: thin;
+    /* Firefox */
+  }
+
+  .show-scrollbar-on-hover:hover::-webkit-scrollbar-thumb {
+    background: rgba(128, 128, 128, 0.4);
+  }
+
+  .show-scrollbar-on-hover:hover::-webkit-scrollbar-thumb:hover {
+    background: rgba(128, 128, 128, 0.6);
+  }
+
+  /* Glassmorphism utility classes - Using CSS Variables */
+  .glass {
+    background: var(--tradeberg-glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--tradeberg-glass-border);
+    box-shadow: 0 8px 32px 0 var(--tradeberg-shadow);
+  }
+
+  .glass-strong {
+    background: var(--tradeberg-glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--tradeberg-glass-border);
+    box-shadow: 0 8px 32px 0 var(--tradeberg-shadow);
+    opacity: 0.9;
+  }
+
+  .glass-light {
+    background: var(--tradeberg-glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--tradeberg-glass-border);
+    box-shadow: 0 4px 16px 0 var(--tradeberg-shadow);
+    opacity: 0.7;
+  }
+
+  .glass-dark {
+    background: var(--tradeberg-glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--tradeberg-glass-border);
+    box-shadow: 0 8px 32px 0 var(--tradeberg-shadow);
+  }
+
+  .glass-input {
+    background: var(--tradeberg-glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--tradeberg-glass-border);
+    box-shadow: 0 4px 20px 0 var(--tradeberg-shadow);
+  }
+
+  .glass-user {
+    background: var(--tradeberg-glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--tradeberg-glass-border);
+    box-shadow: 0 4px 20px 0 var(--tradeberg-shadow);
+  }
+
+  .glass-assistant {
+    background: var(--tradeberg-glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--tradeberg-glass-border);
+    box-shadow: 0 4px 20px 0 var(--tradeberg-shadow);
+  }
+
+  /* Dark theme prose (markdown) styling */
+  .dark .prose {
+    color: rgb(255, 255, 255);
+  }
+
+  .dark .prose h1,
+  .dark .prose h2,
+  .dark .prose h3,
+  .dark .prose h4,
+  .dark .prose h5,
+  .dark .prose h6 {
+    color: rgb(255, 255, 255);
+  }
+
+  .dark .prose p {
+    color: rgb(229, 231, 235);
+  }
+
+  .dark .prose strong {
+    color: rgb(255, 255, 255);
+  }
+
+  .dark .prose ul,
+  .dark .prose ol {
+    color: rgb(229, 231, 235);
+  }
+
+  .dark .prose li {
+    color: rgb(229, 231, 235);
+  }
+
+  .dark .prose a {
+    color: rgb(147, 197, 253);
+  }
+
+  .dark .prose blockquote {
+    color: rgb(209, 213, 219);
+    border-left-color: rgb(75, 85, 99);
+  }
+
+  /* 3D Transform utilities */
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .perspective-500 {
+    perspective: 500px;
+  }
+
+  /* 3D Animation keyframes */
+  @keyframes float3d {
+
+    0%,
+    100% {
+      transform: translateY(0px) rotateY(0deg) rotateX(0deg);
+    }
+
+    25% {
+      transform: translateY(-10px) rotateY(2deg) rotateX(1deg);
+    }
+
+    50% {
+      transform: translateY(-5px) rotateY(0deg) rotateX(0deg);
+    }
+
+    75% {
+      transform: translateY(-10px) rotateY(-2deg) rotateX(-1deg);
+    }
+  }
+
+  @keyframes slideIn3d {
+    from {
+      opacity: 0;
+      transform: translateZ(-100px) rotateX(-90deg) scale(0.8);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateZ(0) rotateX(0deg) scale(1);
+    }
+  }
+
+  .animate-float3d {
+    animation: float3d 4s ease-in-out infinite;
+  }
+
+  .animate-slideIn3d {
+    animation: slideIn3d 0.6s ease-out forwards;
+  }
 }
