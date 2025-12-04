@@ -1,7 +1,7 @@
-# TradeBerg Challenge: The "Explain This Move" Feature
+# TradeBerg Challenge: The "Chart Capture" Feature
 
 ## The Mission
-You are building the core feature of TradeBerg: **"Explain This Move"**.
+You are building a critical component for TradeBerg.
 The goal is simple: When the user clicks the camera icon in the chat input, capture the **visual state** of the TradingView chart and display a preview of it in the chat interface.
 
 ## The Problem
